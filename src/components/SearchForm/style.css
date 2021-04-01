@@ -1,9 +1,22 @@
 form.search {
   overflow: auto;
-  margin-bottom: 10px;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-bottom: 5px solid blue;
+  background-color: lightblue;
+}
+
+h1, label {
+  color: aliceblue;
 }
 
 form.search button[type="submit"] {
   float: right;
   margin-top: 10px;
+}
+
+button {
+  background-color: blue!important;
+  color: aliceblue!important;
 }

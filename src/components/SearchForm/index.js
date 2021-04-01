@@ -7,7 +7,7 @@ function SearchForm(props) {
     <form className="search">
       <div className="form-group">
         <h1 className="text-center">Search By Employee Name!</h1>
-        <label htmlFor="name">Employee Name:</label>
+        <label htmlFor="name"><h3>Employee Name:</h3></label>
         <input
           value={props.search}
           onChange={props.handleInputChange}
@@ -18,7 +18,7 @@ function SearchForm(props) {
           placeholder="Type in employee name to begin"
           id="name"
         />
-        <button type="submit" onClick={props.handleFormSubmit} className="btn btn-success">
+        <button type="submit" onClick={props.handleFormSubmit} className="btn searchButton">
           Search
         </button>
       </div>

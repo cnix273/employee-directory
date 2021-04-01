@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import Container from "../../components/Container";
-import SearchForm from "../../components/SearchForm";
-import SearchResults from "../../components/SearchResults";
+import SearchForm from "../SearchForm";
+import SearchResults from "../SearchResults";
 
 class Search extends Component {
   state = {
@@ -61,30 +60,9 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             employees={this.state.employees}
         />
-        <Container style={{ minHeight: "80%" }}>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Picture</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Phone Number</th>
-                  <th scope="col">DOB</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.employees.map((employee) => {
-                  return(<tr>
-                    <td><img src={employee.picture.medium}></img></td>
-                    <td>{employee.name.first} {employee.name.last}</td>
-                    <td>{employee.email}</td>
-                    <td>{employee.phone}</td>
-                    <td>{employee.dob.date.split("T")[0]}</td>
-                  </tr>)
-                })} 
-              </tbody>
-            </table>
-        </Container>
+        <SearchResults
+            employees={this.state.employees}
+        />
       </div>
     );
   }
