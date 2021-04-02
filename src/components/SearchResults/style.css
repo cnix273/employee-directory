@@ -1,5 +1,4 @@
 .searchResults {
-  background-color: aliceblue;
   margin-top: 50px;
 }
 
@@ -19,8 +18,18 @@ th {
 td {
   text-align: center;
   color: rgb(106, 105, 105);
+  background-color: aliceblue;
 }
 
 td.name {
   background-color: lightblue;
+}
+
+/* Responsive Styling for screens smaller than 576px */
+@media screen and (max-width: 575px) {
+  .searchResults {
+      /*Structure*/
+      width: 100%;
+      margin-top:330px;
+  }
 }

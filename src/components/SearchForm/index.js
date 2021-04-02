@@ -18,8 +18,8 @@ function SearchForm(props) {
           placeholder="Type in employee name to begin"
           id="name"
         />
-        <button type="submit" onClick={props.handleFormSubmit} className="btn searchButton">
-          Search
+        <button type="submit" onClick={props.handleSort} className="btn searchButton">
+          Sort By Name
         </button>
       </div>
     </form>

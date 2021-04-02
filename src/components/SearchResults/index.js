@@ -4,7 +4,7 @@ import "./style.css";
 
 function SearchResults(props) {
   return (
-    <Container style={{ minHeight: "80%" }}>
+    <Container style={{ minHeight: "80%" }} className="container">
       <div className="searchResults">
         <table className="table">
           <thead>
@@ -23,7 +23,7 @@ function SearchResults(props) {
                 <td className="name">{employee.name.first} {employee.name.last}</td>
                 <td>{employee.email}</td>
                 <td>{employee.phone}</td>
-                <td>{employee.dob.date.split("T")[0]}</td>
+                <td>{employee.dob.date}</td>
               </tr>)
             })} 
           </tbody>

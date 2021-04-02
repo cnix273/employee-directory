@@ -5,17 +5,23 @@ import SearchResults from "../SearchResults";
 
 class Search extends Component {
   state = {
-    search: "",
     employees: [],
-    filteredEmployees: [],
-    error: ""
+    filteredEmployees: []
   };
 
   // When the component mounts, get a list of all employees and update this.state.employees
   componentDidMount() {
     API.getEmployeeList()
       .then(res => {
-          this.setState({ employees: res.data.results })
+          const employees = res.data.results;
+          employees.map(employee => {
+            employee.dob.date = employee.dob.date.split("T")[0];
+            employee.dob.date = employee.dob.date.split("-").reverse().join("-");
+          })
+          this.setState({
+            employees: employees,
+            filteredEmployees: employees
+          })
       })
       .catch(err => console.log(err));
   }
@@ -23,45 +29,75 @@ class Search extends Component {
   // Setting state to search value
   handleInputChange = event => {
     // Setting target value to searchParam variable
-    let searchParam = event.target.value;
-    // Creating variable to set capitalized searchParam equal to
-    let searchParamCapital = "";
+    let searchParam = event.target.value.toLowerCase();
+    
+    const employees = this.state.employees
 
-    // Function to capitalize first letter of search value
-    function capitalize(searchParam) {
-      searchParamCapital = searchParam.charAt(0).toUpperCase() + searchParam.slice(1);
-    }
-
-    capitalize(searchParam)
-
-    // Setting state to capitalized search value
-    this.setState({ search: searchParamCapital });
-  };
-
-  // Filtering employees array by name
-  handleFormSubmit = event => {
-    event.preventDefault();
-
-    // Get search value from state
-    const searchParam = this.state.search;
+    const filteredList = [];
    
     // Filter employees array in state by name based on searchParam
-    const filteredList = this.state.employees.filter(employee => employee.name.first === searchParam || employee.name.last === searchParam);
+    employees.filter(employee => {
+      if (employee.name.first.toLowerCase().search(searchParam) !== -1 || employee.name.last.toLowerCase().search(searchParam) !== -1) 
+      {filteredList.push(employee)}
+    });
    
     // Set employees array in state equal to new filtered list of employees
-    this.setState({employees: filteredList});
+    this.setState({
+      filteredEmployees: filteredList
+    });
+
+  };
+
+  // Sort employees array alphabetically
+  handleSort = event => {
+    event.preventDefault();
+
+    // Get employees from state
+    const sortedEmployees = this.state.filteredEmployees
+
+    // Sort employees by first name and if they have the same first name then last name
+    sortedEmployees.sort((a,b) => {
+      let fa = a.name.first.toLowerCase();
+      let fb = b.name.first.toLowerCase();
+      let la = a.name.last.toLowerCase();
+      let lb = b.name.last.toLowerCase();
+
+      if (fa < fb) {
+        return -1;
+      }
+
+      if (fa > fb) {
+        return 1;
+      }
+      
+      if (fa = fb) {
+        if (la < lb) {
+          return -1;
+        }
+  
+        if (la > lb) {
+          return 1;
+        }
+      }
+
+      return 0;
+
+    })
+
+    // Set state with sorted employees
+    this.setState({filteredEmployees: sortedEmployees});
   }
 
   render() {
     return (
       <div>
         <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
-            employees={this.state.employees}
+            handleSort={this.handleSort}
+            search={this.state.search}
         />
         <SearchResults
-            employees={this.state.employees}
+            employees={this.state.filteredEmployees}
         />
       </div>
     );

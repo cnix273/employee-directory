@@ -19,4 +19,14 @@ form.search button[type="submit"] {
 button {
   background-color: blue!important;
   color: aliceblue!important;
+  margin-right: 10px!important;
+}
+
+/* Responsive Styling for screens smaller than 576px */
+@media screen and (max-width: 575px) {
+  form.search {
+      position: fixed;
+      top: 0;
+      margin-bottom: 10px;
+  }
 }
