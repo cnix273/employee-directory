@@ -25,7 +25,7 @@ The user can perform the following actions:
 Deployed application: https://cnix273.github.io/employee-directory/.
 
 **Application Walkthrough**
-![Video Walkthrough](https://https://github.com/cnix273/employee-directory/blob/main/walkthrough.gif)
+![Video Walkthrough](https://github.com/cnix273/employee-directory/blob/main/walkthrough.gif)
 
 ## Credits
 
