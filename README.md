@@ -22,10 +22,10 @@ The user can perform the following actions:
 * React - Javascript library for building UI
 * GitHub - Hosts the repository.
 
-Deployed application: https://stark-reaches-59593.herokuapp.com/.
+Deployed application: https://cnix273.github.io/employee-directory/.
 
 **Application Walkthrough**
-![Video Walkthrough](https://github.com/cnix273/Eat-Da-Burger/blob/main/walkthrough.gif)
+![Video Walkthrough](https://https://github.com/cnix273/employee-directory/blob/main/walkthrough.gif)
 
 ## Credits
 
