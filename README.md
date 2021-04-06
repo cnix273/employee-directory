@@ -2,16 +2,18 @@
 
 ## Description
 
-The application serves as an employee directory. The applicaiton is built using React, Node, Express, JSX, CSS, and Javascript.
+The application serves as an employee directory. The employee table is populated using an API call to randomuser.me. The user can then perform the following actions:
+* Search employees by first or last name by typing in the search box
+* Sort the list alphabtically by name by clicking the sort button
+* sort the list reverse alphabtically by clicking the sort button again
 
-The user can perform the following actions:
-* Search employees by first or last name
-* Sort the list by name
+The applicaiton is built using React, Node, Express, JSX, CSS, and Javascript.
 
 ## Installation
 
-1. Clone the repository from github to your local server.
-2. Type npm start to run the application.
+1. Clone the repository from github to your local server: "git clone https://github.com/cnix273/employee-directory.git"
+3. Install the application dependencies: "npm install"
+2. Run the application: "npm start"
 
 ## Usage
 
