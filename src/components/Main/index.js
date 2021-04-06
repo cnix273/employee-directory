@@ -6,7 +6,8 @@ import SearchResults from "../SearchResults";
 class Search extends Component {
   state = {
     employees: [],
-    filteredEmployees: []
+    filteredEmployees: [],
+    sorted: false
   };
 
   // When the component mounts, get a list of all employees and update this.state.employees
@@ -52,37 +53,86 @@ class Search extends Component {
   handleSort = event => {
     event.preventDefault();
 
-    // Get employees from state
+    // Get employees and sorted from state
     const sortedEmployees = this.state.filteredEmployees
+    let sorted = this.state.sorted;
 
-    // Sort employees by first name and if they have the same first name then last name
-    sortedEmployees.sort((a,b) => {
-      let fa = a.name.first.toLowerCase();
-      let fb = b.name.first.toLowerCase();
-      let la = a.name.last.toLowerCase();
-      let lb = b.name.last.toLowerCase();
+    // Sorting employees alphabetically
+    if (this.state.sorted == false) {
+      sortedEmployees.sort((a,b) => {
+        let fa = a.name.first.toLowerCase();
+        let fb = b.name.first.toLowerCase();
+        let la = a.name.last.toLowerCase();
+        let lb = b.name.last.toLowerCase();
 
-      if (fa < fb) {
-        return -1;
-      }
-
-      if (fa > fb) {
-        return 1;
-      }
-      
-      if (fa = fb) {
-        if (la < lb) {
+        // Set sorted state to true
+        this.setState({
+          sorted: true
+        });
+        
+        // Sorting employees by first name
+        if (fa < fb) {
           return -1;
         }
-  
-        if (la > lb) {
+
+        if (fa > fb) {
           return 1;
         }
-      }
 
-      return 0;
+        // If employees have the same first name, sort by last name
+        if (fa = fb) {
+          if (la < lb) {
+            return -1;
+          }
+    
+          if (la > lb) {
+            return 1;
+          }
+        }
 
-    })
+        return 0;
+
+      })
+    }
+
+    // Sorting employees reverse alphabetically
+    if (sorted == true) {
+      // Sort employees by first name in reverse alphabetical order
+      sortedEmployees.sort((a,b) => {
+        let fa = a.name.first.toLowerCase();
+        let fb = b.name.first.toLowerCase();
+        let la = a.name.last.toLowerCase();
+        let lb = b.name.last.toLowerCase();
+
+        // Set sorted state to false
+        this.setState({
+          sorted: false
+        });
+
+        // Sorting employees by first name
+        if (fa < fb) {
+          return 1;
+        }
+
+        if (fa > fb) {
+          return -1;
+        }
+        
+        // If employees have the same first name, sort by last name
+        if (fa = fb) {
+          if (la < lb) {
+            return 1;
+          }
+    
+          if (la > lb) {
+            return -1;
+          }
+        }
+
+        return 0;
+
+      })
+    }
 
     // Set state with sorted employees
     this.setState({filteredEmployees: sortedEmployees});
