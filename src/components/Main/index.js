@@ -18,6 +18,7 @@ class Search extends Component {
           employees.map(employee => {
             employee.dob.date = employee.dob.date.split("T")[0];
             employee.dob.date = employee.dob.date.split("-").reverse().join("-");
+            return employee.dob.date;
           })
           this.setState({
             employees: employees,
@@ -40,6 +41,7 @@ class Search extends Component {
     employees.filter(employee => {
       if (employee.name.first.toLowerCase().search(searchParam) !== -1 || employee.name.last.toLowerCase().search(searchParam) !== -1) 
       {filteredList.push(employee)}
+      return filteredList;
     });
    
     // Set employees array in state equal to new filtered list of employees
@@ -58,7 +60,7 @@ class Search extends Component {
     let sorted = this.state.sorted;
 
     // Sorting employees alphabetically
-    if (this.state.sorted == false) {
+    if (this.state.sorted === false) {
       sortedEmployees.sort((a,b) => {
         let fa = a.name.first.toLowerCase();
         let fb = b.name.first.toLowerCase();
@@ -80,7 +82,7 @@ class Search extends Component {
         }
 
         // If employees have the same first name, sort by last name
-        if (fa = fb) {
+        if (fa === fb) {
           if (la < lb) {
             return -1;
           }
@@ -96,7 +98,7 @@ class Search extends Component {
     }
 
     // Sorting employees reverse alphabetically
-    if (sorted == true) {
+    if (sorted === true) {
       // Sort employees by first name in reverse alphabetical order
       sortedEmployees.sort((a,b) => {
         let fa = a.name.first.toLowerCase();
@@ -119,7 +121,7 @@ class Search extends Component {
         }
         
         // If employees have the same first name, sort by last name
-        if (fa = fb) {
+        if (fa === fb) {
           if (la < lb) {
             return 1;
           }
