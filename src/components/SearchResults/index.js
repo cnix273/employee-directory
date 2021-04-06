@@ -19,7 +19,7 @@ function SearchResults(props) {
           <tbody>
             {props.employees.map((employee) => {
               return(<tr>
-                <td><img src={employee.picture.medium}></img></td>
+                <td><img alt={employee.name.first} src={employee.picture.medium}></img></td>
                 <td className="name">{employee.name.first} {employee.name.last}</td>
                 <td>{employee.email}</td>
                 <td>{employee.phone}</td>
